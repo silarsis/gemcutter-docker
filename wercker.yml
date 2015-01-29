@@ -1,0 +1,10 @@
+box: wercker-labs/docker
+# Build definition
+build:
+  steps:
+    - script:
+        name: Build
+        code: |
+          docker build -t silarsis/gemcutter .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
+          docker push silarsis/gemcutter
