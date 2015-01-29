@@ -1,0 +1,19 @@
+development: &DEVELOPMENT
+  adapter: postgresql
+  database: gemcutter_development
+  user: postgres
+  host: db
+  pool: 5
+  timeout: 5000
+
+staging:
+  <<: *DEVELOPMENT
+
+test: &TEST
+  <<: *DEVELOPMENT
+  database: gemcutter_test
+  min_messages: warning
+
+production:
+  adapter: postgresql
+  database: gemcutter_production

@@ -1,0 +1,18 @@
+db:
+  build: postgres
+  expose:
+    - "5432"
+
+redis:
+  image: redis:latest
+
+gemcutter:
+  build: .
+  links:
+    - db:db
+    - redis:redis
+  expose:
+    - "80"
+  environment:
+    S3_KEY:
+    S3_SECRET:
