@@ -5,6 +5,6 @@ build:
     - script:
         name: Build
         code: |
-          docker build -t silarsis/gemcutter .
+          fig build
           docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
           docker push silarsis/gemcutter

@@ -37,6 +37,9 @@ RUN git config --global color.ui auto \
     && git config --global push.default current \
     && git config --global github.user silarsis
 RUN cd /usr/local && git clone git://github.com/rubygems/rubygems.org
-ADD database.yml /usr/local/rubygems/config/database.yml
-RUN cd /usr/local/rubygems && bundle install vendor/bundler_gems
-RUN cd /usr/local/rubygems && rake db:create db:migrate
+WORKDIR /usr/local/rubygems.org
+ADD database.yml /usr/local/rubygems.org/config/database.yml
+RUN echo "gem 'therubyracer'" >> Gemfile
+RUN bundle install --path vendor/bundle
+ADD start.sh /usr/local/bin/start.sh
+CMD /usr/local/bin/start.sh
