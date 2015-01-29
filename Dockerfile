@@ -34,7 +34,7 @@ RUN gem install --no-document bundler pg
 RUN git config --global color.ui auto \
     && git config --global user.email "kevin@littlejohn.id.au" \
     && git config --global user.name "Kevin Littlejohn" \
-    && git config --global push.default simple \
+    && git config --global push.default current \
     && git config --global github.user silarsis
 RUN cd /usr/local && git clone git://github.com/rubygems/rubygems.org
 ADD database.yml /usr/local/rubygems/config/database.yml
