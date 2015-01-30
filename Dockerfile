@@ -15,8 +15,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       git \
   && rm -rf /var/lib/apt/lists/*
 
-ENV RUBY_MAJOR 1.9
-ENV RUBY_VERSION 1.9.3-p547
+ENV RUBY_MAJOR 2.0
+ENV RUBY_VERSION 2.0.0-p481
 
 RUN echo 'gem: --no-document' >> /.gemrc
 
@@ -39,6 +39,7 @@ RUN git config --global color.ui auto \
 RUN cd /usr/local && git clone git://github.com/rubygems/rubygems.org
 WORKDIR /usr/local/rubygems.org
 ADD database.yml /usr/local/rubygems.org/config/database.yml
+ADD redis.rb /usr/local/rubygems.org/config/initializers/redis.rb
 RUN echo "gem 'therubyracer'" >> Gemfile
 RUN bundle install --path vendor/bundle
 ADD start.sh /usr/local/bin/start.sh
